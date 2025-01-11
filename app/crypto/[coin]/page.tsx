@@ -8,6 +8,7 @@ import { Team } from "@/components/Team";
 import SentimentComponent from "@/components/Sentiments";
 import { Tokenomics } from "@/components/Tokenomics";
 import { TrendingCoins } from "@/components/TrendingCoins";
+import { Footer } from "@/components/Footer";
 
 export default async function CoinPage({
   params,
@@ -17,10 +18,12 @@ export default async function CoinPage({
   const { coin } = params;
 
   return (
-    <div className="bg-[#eff2f5]">
+    <div className="bg-[#eff2f5] min-h-screen">
+      {/* Navbar */}
       <Navbar />
-      <div className="flex items-center ml-[56px]  mt-[26px] space-x-2">
-        <h1 className="text-gray-600">Cryptocurrencies</h1>
+
+      <div className="flex items-center px-6 lg:px-16 mt-6 space-x-2">
+        <h1 className="text-gray-600 text-sm md:text-base">Cryptocurrencies</h1>
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +31,7 @@ export default async function CoinPage({
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="currentColor"
-            className="size-4 text-gray-600"
+            className="w-4 h-4 text-gray-600"
           >
             <path
               strokeLinecap="round"
@@ -37,11 +40,13 @@ export default async function CoinPage({
             />
           </svg>
         </div>
-        <h1>{coin}</h1>
+        <h1 className="text-sm md:text-base font-medium">{coin}</h1>
       </div>
-      <div className="grid grid-cols-3 space-x-[20px] ml-[56px] mr-[56px]">
-        {/* left side of grid */}
-        <div className="col-span-2 flex flex-col space-y-5">
+
+      {/* Main Content */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-6 lg:px-16 mt-8">
+        {/* Left Side (2/3 on larger screens) */}
+        <div className="lg:col-span-2 flex flex-col space-y-6">
           <Chart coin={coin.toUpperCase()} />
           <LineBar />
           <PerformanceCard coin={coin.toUpperCase()} />
@@ -50,12 +55,16 @@ export default async function CoinPage({
           <Tokenomics />
           <Team />
         </div>
-        {/* right side of grid */}
-        <div>
+
+        {/* Right Side (1/3 on larger screens) */}
+        <div className="space-y-6">
           <GetStartedCard />
           <TrendingCoins />
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

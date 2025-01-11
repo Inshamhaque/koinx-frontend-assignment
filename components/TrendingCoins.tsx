@@ -9,7 +9,7 @@ export function TrendingCoins() {
     const fetchTrendingCoins = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/search/trending`,
+          `https://api.coingecko.com/api/v3/search/trending`,
           {
             params: {
               x_cg_demo_api_key: process.env.NEXT_PUBLIC_API_KEY,
@@ -23,7 +23,7 @@ export function TrendingCoins() {
           symbol: el.item.symbol,
           market_cap_rank: el.item.market_cap_rank,
           thumb: el.item.thumb,
-          change: el.item.data?.price_change_percentage_24h ?? 0,
+          change: Number(el.item.data?.price_change_percentage_24h.usd) || 0, // Ensure change is a number
         }));
 
         setTrending(coinData);
@@ -63,7 +63,10 @@ export function TrendingCoins() {
                   coin.change > 0 ? "text-green-500" : "text-red-500"
                 }`}
               >
-                {coin.change.toFixed(2)}%
+                {typeof coin.change === "number"
+                  ? coin.change.toFixed(3)
+                  : "N/A"}
+                %
               </div>
             </li>
           ))

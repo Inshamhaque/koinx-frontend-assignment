@@ -26,7 +26,6 @@ export function Chart({ coin }: { coin: string }) {
           }
         );
         console.log(response.data);
-        // Extract price and percentage change from API response
         const usdValue = response.data[coinId.toLowerCase()].usd;
         const inrValue = response.data[coinId.toLowerCase()].inr;
         const usd24hChange =
@@ -42,7 +41,7 @@ export function Chart({ coin }: { coin: string }) {
     };
 
     fetchData(coin);
-  }, []);
+  }, [coin]);
 
   // Determine symbol based on coin name
   let sym = "";
@@ -51,44 +50,54 @@ export function Chart({ coin }: { coin: string }) {
     sym = "BTC";
     img = "https://assets.coingecko.com/coins/images/1/small/bitcoin.png";
   }
-  if (coin.toUpperCase() == "ETHEREUM") {
+  if (coin.toUpperCase() === "ETHEREUM") {
     sym = "ETH";
     img = "https://assets.coingecko.com/coins/images/279/small/ethereum.png";
   }
-  if (coin.toUpperCase() == "SOLANA") {
+  if (coin.toUpperCase() === "SOLANA") {
     sym = "SOL";
     img = "https://assets.coingecko.com/coins/images/1/thumb/solana.png";
   }
 
   return (
-    <div className="bg-white flex flex-col rounded-lg mt-[26px] pl-10 pt-8">
+    <div className="bg-white flex flex-col rounded-lg mt-6 px-6 pt-4 lg:pt-8 lg:px-10 shadow-md">
       {/* Header Section */}
       <div className="flex items-center space-x-2">
-        <Image src={img} alt={`${coin} logo`} width={30} height={30} />
-        <div>{coin.toUpperCase()}</div>
-        <div className="text-gray-500">{sym?.toUpperCase()}</div>
+        <Image
+          src={img}
+          alt={`${coin} logo`}
+          width={30}
+          height={30}
+          className="h-6 w-6 md:h-8 md:w-8"
+        />
+        <div className="text-sm md:text-lg font-medium">
+          {coin.toUpperCase()}
+        </div>
+        <div className="text-gray-500 text-xs md:text-sm">
+          {sym.toUpperCase()}
+        </div>
       </div>
 
       {/* Price Section */}
       <div className="mt-4">
-        <div className=" flex items-center space-x-4">
-          <span className=" text-2xl font-semibold">
+        <div className="flex items-center space-x-4">
+          <span className="text-xl md:text-2xl font-semibold">
             ${price?.usd?.toLocaleString() || "Loading..."}
           </span>
           {price?.usd_24h_change !== undefined && (
             <span
-              className={`text-xs text-white rounded-sm px-2 py-1 ${
+              className={`text-xs md:text-sm text-white rounded-sm px-2 py-1 ${
                 price.usd_24h_change >= 0 ? "bg-green-500" : "bg-red-500"
               }`}
             >
               ({price.usd_24h_change.toFixed(2)}%)
             </span>
           )}
-          <span className="text-sm text-gray-500 ">(24H)</span>
+          <span className="text-xs md:text-sm text-gray-500">(24H)</span>
         </div>
       </div>
       <div>
-        <div className="text-sm text-gray-700">
+        <div className="text-xs md:text-sm text-gray-700">
           ₹ {price?.inr?.toLocaleString() || "Loading..."}
         </div>
       </div>
@@ -100,43 +109,40 @@ export function Chart({ coin }: { coin: string }) {
 }
 
 function TradingViewWidget({ coin }: { coin: string }) {
-  const container = useRef(null);
+  const container = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
-    script.type = "text/javascript";
-    script.async = true;
-    script.innerHTML = `
+    if (container.current) {
+      const script = document.createElement("script");
+      script.src =
+        "https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js";
+      script.type = "text/javascript";
+      script.async = true;
+      script.innerHTML = `
         {
           "autosize": true,
-          "symbol": "${coin}",
+          "symbol": "${coin.toUpperCase()}",
           "interval": "D",
           "timezone": "Etc/UTC",
           "theme": "light",
           "style": "1",
           "locale": "en",
           "allow_symbol_change": false,
-          "calendar": true,
-          "support_host": "https://www.tradingview.com"
+          "calendar": true
         }`;
-    //@ts-ignore
-    container.current.appendChild(script);
-  }, []);
+      container.current.innerHTML = "";
+      container.current.appendChild(script);
+    }
+  }, [coin]);
 
   return (
     <div
-      className="tradingview-widget-container h-screen"
+      className="tradingview-widget-container w-full h-[50vh] md:h-[60vh] lg:h-[70vh] bg-gray-100 rounded-lg overflow-hidden"
       ref={container}
-      // style={{ height: "100vh", width: "100vh" }}
     >
-      <div
-        className="tradingview-widget-container__widget"
-        style={{ height: "100%", width: "100%" }}
-      ></div>
+      <div className="tradingview-widget-container__widget w-full h-full"></div>
     </div>
   );
 }
 
-export default memo(TradingViewWidget);
+export default memo(Chart);

@@ -1,18 +1,19 @@
 "use client";
 import React, { useRef } from "react";
+import gsap from "gsap";
 
 const SentimentComponent = () => {
   const scrollContainerRef = useRef(null);
   const keyEvents = [
     {
       id: 1,
-      icon: "📰", // News Icon
+      icon: "📰",
       bgColor: "bg-blue-100",
       iconColor: "bg-blue-400",
     },
     {
       id: 2,
-      icon: "📅", // Event Calendar Icon
+      icon: "📅",
       bgColor: "bg-green-100",
       iconColor: "bg-green-400",
     },
@@ -35,16 +36,34 @@ const SentimentComponent = () => {
       iconColor: "bg-pink-400",
     },
   ];
+
+  const handleScroll = (direction: "left" | "right") => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      const distance = 200;
+      const direct = direction === "left" ? -1 : 1;
+      gsap.to(container, {
+        scrollLeft: container.scrollLeft + direct * distance,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+    }
+  };
+
   return (
     <div className="overflow-hidden bg-white p-6 rounded-lg mx-auto">
-      {/* Header */}
       <h2 className="text-2xl font-semibold mb-4">Sentiment</h2>
       <div className="overflow-hidden">
         <h1 className="text-xl text-gray-800 font-semibold mb-4">Key Events</h1>
-        {/* Scrollable Container */}
-        <div className="flex items-center">
+        <div className="relative">
+          <button
+            className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 flex items-center justify-center border bg-white hover:bg-gray-200 rounded-full z-10"
+            onClick={() => handleScroll("left")}
+          >
+            ←
+          </button>
           <div
-            className="flex overflow-x-scroll flex-nowrap scrollbar-hide space-x-4 pl-10 pr-10"
+            className="flex overflow-x-scroll no-scrollbar flex-nowrap scrollbar-hide space-x-4 pl-10 pr-10"
             ref={scrollContainerRef}
           >
             {keyEvents.map((el, idx) => (
@@ -73,10 +92,14 @@ const SentimentComponent = () => {
               </div>
             ))}
           </div>
+          <button
+            className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 flex items-center justify-center border bg-white hover:bg-gray-200 rounded-full z-10"
+            onClick={() => handleScroll("right")}
+          >
+            →
+          </button>
         </div>
       </div>
-
-      {/* Analyst Estimates */}
       <div className="mt-8 space-y-8">
         <h1 className="text-xl text-gray-800 font-semibold">
           Analyst Estimates
@@ -86,7 +109,6 @@ const SentimentComponent = () => {
             <div className="text-2xl">76%</div>
           </div>
           <div className="flex-1 flex-col space-y-4">
-            {/* Buy */}
             <div className="flex space-x-4 items-center">
               <div>Buy</div>
               <div className="flex-1 h-2 rounded-lg">
@@ -97,7 +119,6 @@ const SentimentComponent = () => {
               </div>
               <div>76%</div>
             </div>
-            {/* Hold */}
             <div className="flex space-x-2 items-center">
               <div>Hold</div>
               <div className="flex-1 h-2 rounded-lg">
@@ -108,7 +129,6 @@ const SentimentComponent = () => {
               </div>
               <div>8%</div>
             </div>
-            {/* sell */}
             <div className="flex space-x-4 items-center">
               <div>Sell</div>
               <div className="flex-1 h-2 rounded-lg">

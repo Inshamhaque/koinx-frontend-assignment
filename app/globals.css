@@ -1,9 +1,27 @@
+/* global index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #eff2f5;
-  --foreground: #eff2f5;
-  background-color: #eff2f5;
+/* Add the updated code below */
+@layer utilities {
+  /* Universal scrollbar hiding */
+  .no-scrollbar {
+    overflow: hidden; /* Completely hides scrollbars */
+  }
+
+  /* Hide scrollbar for Chrome, Safari, Opera, and Vivaldi */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for Firefox */
+  .no-scrollbar {
+    scrollbar-width: none; /* Hides the scrollbar for Firefox */
+  }
+
+  /* Ensure compatibility with IE and Edge */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* Hides the scrollbar for IE and Edge */
+  }
 }
