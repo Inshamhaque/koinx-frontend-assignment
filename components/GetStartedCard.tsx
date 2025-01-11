@@ -2,7 +2,7 @@ import Image from "next/image";
 import image from "@/public/image.png";
 export function GetStartedCard() {
   return (
-    <div className="bg-[#0052FE] text-white rounded-lg p-6 shadow-md flex flex-col items-center">
+    <div className="mt-[26px] bg-[#0052FE] text-white rounded-lg p-6 shadow-md flex flex-col items-center">
       <h1 className="text-lg font-bold text-center mb-2">
         Get Started with KoinX <br /> for FREE
       </h1>

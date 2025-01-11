@@ -61,7 +61,7 @@ export function Chart({ coin }: { coin: string }) {
   }
 
   return (
-    <div className="bg-white flex flex-col  mt-[26px] pl-10 pt-8">
+    <div className="bg-white flex flex-col rounded-lg mt-[26px] pl-10 pt-8">
       {/* Header Section */}
       <div className="flex items-center space-x-2">
         <Image src={img} alt={`${coin} logo`} width={30} height={30} />

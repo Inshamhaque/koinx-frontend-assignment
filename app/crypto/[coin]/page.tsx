@@ -6,6 +6,8 @@ import { Navbar } from "@/components/Navbar";
 import { PerformanceCard } from "@/components/PerformanceCard";
 import { Team } from "@/components/Team";
 import SentimentComponent from "@/components/Sentiments";
+import { Tokenomics } from "@/components/Tokenomics";
+import { TrendingCoins } from "@/components/TrendingCoins";
 
 export default async function CoinPage({
   params,
@@ -15,7 +17,7 @@ export default async function CoinPage({
   const { coin } = params;
 
   return (
-    <div>
+    <div className="bg-[#eff2f5]">
       <Navbar />
       <div className="flex items-center ml-[56px]  mt-[26px] space-x-2">
         <h1 className="text-gray-600">Cryptocurrencies</h1>
@@ -45,11 +47,13 @@ export default async function CoinPage({
           <PerformanceCard coin={coin.toUpperCase()} />
           <SentimentComponent />
           <About />
+          <Tokenomics />
           <Team />
         </div>
         {/* right side of grid */}
         <div>
           <GetStartedCard />
+          <TrendingCoins />
         </div>
       </div>
     </div>
