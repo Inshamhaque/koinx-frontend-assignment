@@ -1,10 +1,12 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import gsap from "gsap";
 
 export default function ErrorPage() {
   const router = useRouter();
+
   useEffect(() => {
     const tl = gsap.timeline();
     tl.fromTo(
@@ -25,6 +27,14 @@ export default function ErrorPage() {
     );
   }, []);
 
+  const handleRedirect = () => {
+    try {
+      router.push("/crypto/bitcoin"); // Ensure this route exists
+    } catch (error) {
+      console.error("Navigation error:", error);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
       <div className="error-container text-center space-y-6">
@@ -36,17 +46,6 @@ export default function ErrorPage() {
           <p className="text-gray-400 mt-2">
             The page you're looking for doesn't exist or has been moved.
           </p>
-        </div>
-
-        <div className="space-x-4">
-          <button
-            onClick={() => {
-              router.push("/crypto/bitcoin");
-            }}
-            className="error-button px-6 py-3 bg-red-500 text-white rounded-lg shadow-lg hover:bg-red-600 hover:scale-105 transition-all"
-          >
-            Go Home
-          </button>
         </div>
       </div>
     </div>

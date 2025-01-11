@@ -56,7 +56,7 @@ export function Chart({ coin }: { coin: string }) {
   }
   if (coin.toUpperCase() === "SOLANA") {
     sym = "SOL";
-    img = "https://assets.coingecko.com/coins/images/1/thumb/solana.png";
+    img = "https://assets.coingecko.com/coins/images/4128/small/solana.png";
   }
 
   return (
