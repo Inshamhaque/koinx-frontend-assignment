@@ -45,7 +45,7 @@ export default async function CoinPage({
 
       {/* Main Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 px-6 lg:px-16 mt-8">
-        {/* Left Side (2/3 on larger screens) */}
+        {/* Left Side */}
         <div className="lg:col-span-2 flex flex-col space-y-6">
           <Chart coin={coin.toUpperCase()} />
           <LineBar />
@@ -56,7 +56,7 @@ export default async function CoinPage({
           <Team />
         </div>
 
-        {/* Right Side (1/3 on larger screens) */}
+        {/* Right side */}
         <div className="space-y-6">
           <GetStartedCard />
           <TrendingCoins />

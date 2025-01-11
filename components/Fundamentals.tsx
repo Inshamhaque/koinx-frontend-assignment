@@ -60,7 +60,7 @@ function Fundamentals({ coin }: { coin: string }) {
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-6 font-sans text-gray-800">
+    <div className=" flex flex-col md:grid  md:grid-cols-2 gap-8 p-6 font-sans text-gray-800">
       {/* Left Column */}
       <div className="space-y-4">
         <div className="flex justify-between border-b pb-4 ">

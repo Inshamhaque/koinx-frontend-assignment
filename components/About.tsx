@@ -4,7 +4,7 @@ import imag2 from "@/public/imag2.png";
 
 export function About() {
   return (
-    <div className="bg-white max-w-4xl mx-auto  shadow-md rounded-lg pl-10 pt-8">
+    <div className="bg-white max-w-4xl mx-auto  shadow-md rounded-lg pl-3 pr-3 pt-5  lg:pl-10 lg:pt-8 lg:pr-10">
       <h2 className="text-2xl font-bold mb-4">About Bitcoin</h2>
 
       <div className="mb-6">
@@ -43,7 +43,7 @@ export function About() {
 
       <div className="mb-6">
         <h3 className="text-lg font-semibold mb-4">Already Holding Bitcoin?</h3>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 p-4">
           <div className="p-4 bg-blue-100 rounded-lg flex items-center space-x-4">
             <div className="w-30 h-30 rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center">
               <Image

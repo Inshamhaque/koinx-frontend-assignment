@@ -2,7 +2,7 @@ import React from "react";
 import { TokenomicsChart } from "./PieChart";
 export function Tokenomics() {
   return (
-    <div className="flex flex-col bg-white pl-10 pt-8 pr-10 pb-8 space-y-10 ">
+    <div className="hidden md:flex md:flex-col bg-white pl-10 pt-8 pr-10 pb-8 space-y-10 ">
       <div className="text-2xl font-semibold">Tokenomics</div>
       <div className="flex flex-start">
         <TokenomicsChart />

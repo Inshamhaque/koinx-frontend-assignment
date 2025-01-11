@@ -110,6 +110,8 @@ export function Chart({ coin }: { coin: string }) {
 
 function TradingViewWidget({ coin }: { coin: string }) {
   const container = useRef<HTMLDivElement | null>(null);
+  const isMobile = window.innerWidth < 768;
+  const charheight = isMobile ? "400" : "800";
 
   useEffect(() => {
     if (container.current) {
@@ -128,7 +130,8 @@ function TradingViewWidget({ coin }: { coin: string }) {
           "style": "1",
           "locale": "en",
           "allow_symbol_change": false,
-          "calendar": true
+          "calendar": true,
+          "height":${charheight}
         }`;
       container.current.innerHTML = "";
       container.current.appendChild(script);
@@ -145,4 +148,4 @@ function TradingViewWidget({ coin }: { coin: string }) {
   );
 }
 
-export default memo(Chart);
+export default memo(TradingViewWidget);

@@ -6,14 +6,14 @@ import gsap from "gsap";
 
 export function Footer() {
   return (
-    <div className="mt-10 pl-10 pt-10 bg-white">
+    <div className="hidden lg:flex lg:flex-col mt-10 pl-10 pt-10 bg-white space-x-10">
       <div>
         <h1 className="text-2xl font-semibold">You May also Like</h1>
         <FirstRow />
       </div>
       <div>
         <h1 className="text-2xl font-semibold">Trending Coins</h1>
-        <SecondRow />
+        <FirstRow />
       </div>
     </div>
   );
@@ -35,7 +35,7 @@ function FirstRow() {
           }
         );
 
-        const coinData = response.data.coins.slice(5, 15).map((el: any) => ({
+        const coinData = response.data.coins.slice(0, 15).map((el: any) => ({
           id: el.item.id,
           name: el.item.name,
           symbol: el.item.symbol,
@@ -57,13 +57,20 @@ function FirstRow() {
 
   const handleScroll = (direction: "left" | "right") => {
     const container = scrollContainerRef.current;
-    const distance = 200;
-    const direct = direction === "left" ? -1 : 1;
-    gsap.to(container, {
-      scrollLeft: container?.scrollLeft || +direct * distance,
-      duration: 0.5,
-      ease: "power2.out",
-    });
+
+    if (container) {
+      const distance = 200;
+      const newScrollPosition =
+        direction === "left"
+          ? container.scrollLeft - distance
+          : container.scrollLeft + distance;
+
+      gsap.to(container, {
+        scrollLeft: newScrollPosition,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+    }
   };
 
   return (
@@ -126,125 +133,6 @@ function FirstRow() {
         ))}
       </div>
 
-      {/* Right Arrow Button */}
-      <button
-        className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 flex items-center justify-center border bg-white hover:bg-gray-200 rounded-full hover:bg-gray-300 z-10"
-        onClick={() => handleScroll("right")}
-      >
-        →
-      </button>
-    </div>
-  );
-}
-
-function SecondRow() {
-  const [trending, setTrending] = useState([]);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const fetchTrendingCoins = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/search/trending`,
-          {
-            params: {
-              x_cg_demo_api_key: process.env.NEXT_PUBLIC_API_KEY,
-            },
-          }
-        );
-
-        const coinData = response.data.coins.slice(0, 10).map((el: any) => ({
-          id: el.item.id,
-          name: el.item.name,
-          symbol: el.item.symbol,
-          market_cap_rank: el.item.market_cap_rank,
-          thumb: el.item.thumb,
-          change: el.item.data?.price_change_percentage_24h.usd ?? 0,
-          sparkline: el.item.data?.sparkline || [],
-          price: el.item.data?.price ?? "N/A",
-        }));
-
-        setTrending(coinData);
-      } catch (error) {
-        console.error("Error fetching trending coins:", error);
-      }
-    };
-
-    fetchTrendingCoins();
-  }, []);
-
-  const handleScroll = (direction: "left" | "right") => {
-    const container = scrollContainerRef.current;
-    const distance = 200;
-    const direct = direction === "left" ? -1 : 1;
-    gsap.to(container, {
-      scrollLeft: container?.scrollLeft || +direct * distance,
-      duration: 0.5,
-      ease: "power2.out",
-    });
-  };
-
-  return (
-    <div className="p-4 relative">
-      <button
-        className="absolute top-1/2 left-2 transform -translate-y-1/2 w-8 h-8 flex items-center justify-center border bg-white hover:bg-gray-200 rounded-full hover:bg-gray-300 z-10"
-        onClick={() => handleScroll("left")}
-      >
-        ←
-      </button>
-
-      <div
-        ref={scrollContainerRef}
-        className="flex overflow-x-auto no-scrollbar space-x-1 p-4 bg-white rounded-md"
-      >
-        {trending.map((coin: any) => (
-          <div
-            key={coin.id}
-            className="border px-4 py-3 bg-white rounded shadow min-w-[150px] flex-shrink-0"
-          >
-            <div className="flex items-center space-x-2">
-              <img
-                src={coin.thumb}
-                alt={coin.name}
-                className="w-8 h-8 rounded-full"
-              />
-              <div>
-                <p className="text-sm font-medium">
-                  {coin.symbol.toUpperCase()}
-                </p>
-                <p className="text-xs text-gray-500">
-                  Rank: {coin.market_cap_rank}
-                </p>
-              </div>
-            </div>
-            <div className="mt-2">
-              <p className="text-sm font-semibold">
-                Price:{" "}
-                {coin.price !== "N/A"
-                  ? `$${parseFloat(coin.price).toFixed(2)}`
-                  : "N/A"}
-              </p>
-              <p
-                className={`text-sm ${
-                  coin.change > 0 ? "text-green-500" : "text-red-500"
-                }`}
-              >
-                {coin.change}%
-              </p>
-            </div>
-            <div className="mt-2">
-              <Image
-                src={coin.sparkline}
-                alt="sparkline"
-                width={120}
-                height={100}
-              ></Image>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Right Arrow Button */}
       <button
         className="absolute top-1/2 right-2 transform -translate-y-1/2 w-8 h-8 flex items-center justify-center border bg-white hover:bg-gray-200 rounded-full hover:bg-gray-300 z-10"
         onClick={() => handleScroll("right")}

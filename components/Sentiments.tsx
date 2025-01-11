@@ -68,12 +68,12 @@ const SentimentComponent = () => {
           >
             {keyEvents.map((el, idx) => (
               <div
-                className={`max-w-[500px] ${el.bgColor} shadow-md rounded-lg p-4 flex-shrink-0`}
+                className={`max-w-[300px] md:max-w-[500px] ${el.bgColor} shadow-md rounded-lg p-4 flex-shrink-0`}
                 key={idx}
               >
                 <div className="grid grid-cols-5">
                   <div
-                    className={`col-span-1 ${el.iconColor} h-12 w-12 items-center rounded-full flex text-2xl justify-center`}
+                    className={`col-span-1 ${el.iconColor} h-12 w-12 items-center rounded-full flex text-lg md:text-xl lg:text-2xl justify-center`}
                   >
                     {el.icon}
                   </div>
@@ -101,40 +101,48 @@ const SentimentComponent = () => {
         </div>
       </div>
       <div className="mt-8 space-y-8">
-        <h1 className="text-xl text-gray-800 font-semibold">
+        <h1 className="text-lg md:text-xl text-gray-800 font-semibold">
           Analyst Estimates
         </h1>
-        <div className="flex space-x-12 items-center text-gray-700">
+        <div className="flex space-x-3 lg:space-x-12 items-center text-gray-700">
           <div className="w-32 h-32 flex items-center justify-center rounded-full bg-green-100">
-            <div className="text-2xl">76%</div>
+            <div className="text-lg lg:text-xl xl:text-2xl">76%</div>
           </div>
           <div className="flex-1 flex-col space-y-4">
-            <div className="flex space-x-4 items-center">
+            <div className="flex space-x-1 lg:space-x-4 items-center">
               <div>Buy</div>
               <div className="flex-1 h-2 rounded-lg">
                 <div
                   className="bg-green-500 h-2 rounded-lg"
-                  style={{ width: "76%" }}
+                  style={{
+                    width: "95%",
+                    maxWidth: "76%",
+                  }}
                 ></div>
               </div>
               <div>76%</div>
             </div>
-            <div className="flex space-x-2 items-center">
+            <div className="flex space-x-1 lg:space-x-2 items-center">
               <div>Hold</div>
               <div className="flex-1 h-2 rounded-lg">
                 <div
                   className="bg-gray-400 h-2 rounded-lg"
-                  style={{ width: "8%" }}
+                  style={{
+                    width: "20%",
+                    maxWidth: "8%",
+                  }}
                 ></div>
               </div>
               <div>8%</div>
             </div>
-            <div className="flex space-x-4 items-center">
+            <div className="flex space-x-2 lg:space-x-4 items-center">
               <div>Sell</div>
               <div className="flex-1 h-2 rounded-lg">
                 <div
                   className="bg-red-500 h-2 rounded-lg"
-                  style={{ width: "16%" }}
+                  style={{
+                    width: "16%",
+                  }}
                 ></div>
               </div>
               <div>16%</div>
