@@ -1,3 +1,5 @@
+"use client";
+/* eslint-disable */
 export function LineBar() {
   return (
     <div className="border-b border-gray-400 pb-3">

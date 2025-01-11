@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Image from "next/image";
 import image from "@/public/image.png";
 

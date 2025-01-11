@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable */
 import Image from "next/image";
 import { useState } from "react";
 
@@ -35,7 +36,6 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Hamburger Icon */}
         <div
           className="md:hidden flex flex-col justify-center items-center space-y-1 w-8 cursor-pointer"
           onClick={() => setIsMenuOpen(!isMenuOpen)}

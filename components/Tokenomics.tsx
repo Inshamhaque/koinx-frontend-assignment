@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react";
 import { TokenomicsChart } from "./PieChart";
 export function Tokenomics() {

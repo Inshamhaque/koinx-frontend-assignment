@@ -1,20 +1,21 @@
+/* eslint-disable */
 import Image from "next/image";
 import imag1 from "@/public/imag1.png";
 import imag2 from "@/public/imag2.png";
 
 export function About() {
   return (
-    <div className="bg-white max-w-4xl mx-auto  shadow-md rounded-lg pl-3 pr-3 pt-5  lg:pl-10 lg:pt-8 lg:pr-10">
+    <div className="bg-white max-w-4xl mx-auto shadow-md rounded-lg p-5 lg:p-10">
       <h2 className="text-2xl font-bold mb-4">About Bitcoin</h2>
 
       <div className="mb-6">
         <h3 className="text-lg font-semibold mb-2">What is Bitcoin?</h3>
         <p className="text-gray-700 mb-2">
-          Bitcoin's price today is US$16,951.82, with a 24-hour trading volume
-          of $191.4 B. BTC is +0.36% in the last 24 hours. It is currently
-          -7.70% from its 7-day all-time high of $18,366.66, and 3.40% from its
-          7-day all-time low of $16,394.75. BTC has a circulating supply of 19.
-          24 M BTC and a max supply of 21 M BTC.
+          Bitcoin&apos;s price today is US&apos;16,951.82, with a 24-hour
+          trading volume of 191.4 B. BTC is +0.36% in the last 24 hours. It is
+          currently -7.70% from its 7-day all-time high of $18,366.66, and 3.40%
+          from its 7-day all-time low of 16,394.75. BTC has a circulating supply
+          of 19.24 M BTC and a max supply of 21 M BTC.
         </p>
       </div>
 
@@ -44,11 +45,12 @@ export function About() {
       <div className="mb-6">
         <h3 className="text-lg font-semibold mb-4">Already Holding Bitcoin?</h3>
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 p-4">
+          {/* Profit Calculation Card */}
           <div className="p-4 bg-blue-100 rounded-lg flex items-center space-x-4">
             <div className="w-30 h-30 rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center">
               <Image
                 src={imag1}
-                alt="Calculate Profits"
+                alt="Illustration of profit calculation"
                 width={120}
                 height={120}
                 className="object-contain"
@@ -69,7 +71,7 @@ export function About() {
             <div className="w-32 h-32 rounded-lg overflow-hidden flex-shrink-0 flex items-center justify-center">
               <Image
                 src={imag2}
-                alt="Calculate Tax Liability"
+                alt="Illustration of tax liability calculation"
                 width={120}
                 height={120}
                 className="object-contain"

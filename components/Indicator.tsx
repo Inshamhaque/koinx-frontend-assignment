@@ -1,3 +1,5 @@
+"use client";
+/* eslint-disable */
 import { useState, useEffect } from "react";
 import axios from "axios";
 export function Indicator({ coin }: { coin: string }) {

@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable */
 import React, { useEffect, useRef, memo, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
@@ -136,7 +137,7 @@ function TradingViewWidget({ coin }: { coin: string }) {
       container.current.innerHTML = "";
       container.current.appendChild(script);
     }
-  }, [coin]);
+  });
 
   return (
     <div

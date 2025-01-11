@@ -1,12 +1,8 @@
 "use client";
-
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import gsap from "gsap";
 
 export default function ErrorPage() {
-  const router = useRouter();
-
   useEffect(() => {
     const tl = gsap.timeline();
     tl.fromTo(
