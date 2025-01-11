@@ -19,9 +19,9 @@ export function Chart({ coin }: { coin: string }) {
           {
             params: {
               x_cg_demo_api_key: process.env.NEXT_PUBLIC_API_KEY,
-              ids: coinId.toLowerCase(), // API requires lowercase coin ID
-              vs_currencies: "inr,usd", // Fetch prices in USD and INR
-              include_24hr_change: true, // Include 24-hour price change
+              ids: coinId.toLowerCase(),
+              vs_currencies: "inr,usd",
+              include_24hr_change: true,
             },
           }
         );
@@ -46,20 +46,25 @@ export function Chart({ coin }: { coin: string }) {
 
   // Determine symbol based on coin name
   let sym = "";
+  let img = "";
   if (coin.toUpperCase() === "BITCOIN") {
     sym = "BTC";
+    img = "https://assets.coingecko.com/coins/images/1/small/bitcoin.png";
+  }
+  if (coin.toUpperCase() == "ETHEREUM") {
+    sym = "ETH";
+    img = "https://assets.coingecko.com/coins/images/279/small/ethereum.png";
+  }
+  if (coin.toUpperCase() == "SOLANA") {
+    sym = "SOL";
+    img = "https://assets.coingecko.com/coins/images/1/thumb/solana.png";
   }
 
   return (
     <div className="bg-white flex flex-col  mt-[26px] pl-10 pt-8">
       {/* Header Section */}
       <div className="flex items-center space-x-2">
-        <Image
-          src="https://assets.coingecko.com/coins/images/1/small/bitcoin.png"
-          alt={`${coin} logo`}
-          width={30}
-          height={30}
-        />
+        <Image src={img} alt={`${coin} logo`} width={30} height={30} />
         <div>{coin.toUpperCase()}</div>
         <div className="text-gray-500">{sym?.toUpperCase()}</div>
       </div>

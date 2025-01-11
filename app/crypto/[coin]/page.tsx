@@ -1,7 +1,11 @@
+import { About } from "@/components/About";
 import { Chart } from "@/components/Chart";
 import { GetStartedCard } from "@/components/GetStartedCard";
 import { LineBar } from "@/components/LineBar";
 import { Navbar } from "@/components/Navbar";
+import { PerformanceCard } from "@/components/PerformanceCard";
+import { Team } from "@/components/Team";
+import SentimentComponent from "@/components/Sentiments";
 
 export default async function CoinPage({
   params,
@@ -38,6 +42,10 @@ export default async function CoinPage({
         <div className="col-span-2 flex flex-col space-y-5">
           <Chart coin={coin.toUpperCase()} />
           <LineBar />
+          <PerformanceCard coin={coin.toUpperCase()} />
+          <SentimentComponent />
+          <About />
+          <Team />
         </div>
         {/* right side of grid */}
         <div>
