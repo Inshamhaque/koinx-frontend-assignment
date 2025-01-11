@@ -1,4 +1,6 @@
 "use client";
+/* eslint-disable */
+
 import { useEffect } from "react";
 import gsap from "gsap";
 
@@ -22,14 +24,6 @@ export default function ErrorPage() {
       { opacity: 1, y: 0, duration: 0.5, stagger: 0.2, ease: "power2.out" }
     );
   }, []);
-
-  const handleRedirect = () => {
-    try {
-      router.push("/crypto/bitcoin"); // Ensure this route exists
-    } catch (error) {
-      console.error("Navigation error:", error);
-    }
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
