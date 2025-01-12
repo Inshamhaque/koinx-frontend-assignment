@@ -10,12 +10,13 @@ import { Tokenomics } from "@/components/Tokenomics";
 import { TrendingCoins } from "@/components/TrendingCoins";
 import { Footer } from "@/components/Footer";
 
+// Async component function
 export default async function CoinPage({
   params,
 }: {
-  params: { coin: string };
+  params: Promise<{ coin: string }>;
 }) {
-  const { coin } = params;
+  const { coin } = await params; // Destructure the coin from params
 
   return (
     <div className="bg-[#eff2f5] min-h-screen">

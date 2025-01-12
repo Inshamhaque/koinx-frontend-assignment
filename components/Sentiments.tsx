@@ -4,7 +4,9 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 
 const SentimentComponent = () => {
-  const scrollContainerRef = useRef(null);
+  // Explicitly type the ref for an HTMLDivElement
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+
   const keyEvents = [
     {
       id: 1,
@@ -40,9 +42,11 @@ const SentimentComponent = () => {
 
   const handleScroll = (direction: "left" | "right") => {
     const container = scrollContainerRef.current;
+
     if (container) {
       const distance = 200;
       const direct = direction === "left" ? -1 : 1;
+
       gsap.to(container, {
         scrollLeft: container.scrollLeft + direct * distance,
         duration: 0.5,

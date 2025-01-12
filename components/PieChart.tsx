@@ -26,7 +26,7 @@ export function TokenomicsChart() {
     responsive: true,
     plugins: {
       legend: {
-        position: "bottom",
+        position: "bottom" as const, // Cast "bottom" to its expected type
       },
     },
   };
