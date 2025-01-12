@@ -39,7 +39,7 @@ function FirstRow() {
     const fetchTrendingCoins = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/search/trending`,
+          `https://api.coingecko.com/api/v3/search/trending`,
           {
             params: {
               x_cg_demo_api_key: process.env.NEXT_PUBLIC_API_KEY,
